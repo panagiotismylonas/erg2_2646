@@ -13,9 +13,12 @@ do z=1,N
   print'(A,T15,I3)',trim(town(z)),rain(z)
 end do  
 
+print'(A,\)','Mesos oros broxhs:'
+print*,mesos_oros(Nmax,rain,N)
+ 
 
 contains
-
+    
 subroutine read_file(s,Nmax,T,R,N)
   character(60),intent(out)::s
   integer,intent(in)::Nmax
@@ -33,8 +36,22 @@ subroutine read_file(s,Nmax,T,R,N)
       
       if (st==-1) exit   
     end do
-
+    
    close (10)
 end subroutine read_file
 
+
+real function mesos_oros(Nmax,R,N)
+  integer,intent(in)::Nmax,R(Nmax),N
+  integer::x,b
+
+    x=0
+    do b=1,N
+      x=x+R(b)
+    end do
+    
+    mesos_oros=x/N
+ 
+end function
+  
 end program
